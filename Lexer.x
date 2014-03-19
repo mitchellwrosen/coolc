@@ -36,8 +36,17 @@ cool :-
 
 {
 
-data LexemeClass = LInteger | LTypeIdent | LObjIdent | LString
-                 deriving Show
+data LexemeClass
+    -- Integer literal
+    = LInteger
+    -- Identifiers
+    | LTypeIdent | LObjIdent
+    -- String literal
+    | LString
+    -- Keywords
+    | LCase | LClass | LElse | LEsac | LFalse | LFi   | LIn   | LInherits | LIsVoid
+    | LLet  | LLoop  | LNew  | LNot  | LOf    | LPool | LThen | LTrue     | LWhile
+    deriving Show
 
 data Lexeme = Lexeme
    { lexemeClass :: LexemeClass
@@ -50,6 +59,7 @@ lexemeShow (Lexeme LInteger _ str)   = "<int '" ++ str ++ "'>"
 lexemeShow (Lexeme LTypeIdent _ str) = "<type '" ++ str ++ "'>"
 lexemeShow (Lexeme LObjIdent _ str)  = "<obj '" ++ str ++ "'>"
 lexemeShow (Lexeme LString _ str)    = "<str '" ++ str ++ "'>"
+lexemeShow (Lexeme _ _ str)          = str
 
 mkL :: LexemeClass -> AlexPosn -> String -> Lexeme
 mkL cls posn str = Lexeme cls posn str

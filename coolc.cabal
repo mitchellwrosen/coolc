@@ -21,6 +21,7 @@ executable lexer
   other-extensions:    CPP, LambdaCase
   build-depends: array        >=0.4 && <0.5
                , base         >=4.6 && <4.7
+               , containers   >=0.5 && <0.6
                , transformers >=0.3 && <0.4
   -- hs-source-dirs:
   build-tools:         alex
